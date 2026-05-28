@@ -410,7 +410,7 @@
 
   <div class="page">
     <header class="hero">
-      <div class="pill">🫐 Un posto dolce per scegliere i nomi</div>
+      <div class="pill">Un posto dolce per scegliere i nomi</div>
       <h1>Mirtillo o Mirtilla?</h1>
       <p>Scrivi il tuo nome, aggiungi uno o più nomi per il nascituro e aiutaci a trovare quello perfetto.</p>
 
@@ -436,7 +436,7 @@
           <div class="gender-select">
             <button class="gender-option male" type="button" data-gender="male">
               <img class="mini bounce-blue" src="./mirtilli-personaggi.jpg" alt="Mirtillo e Mirtilla" />
-              <div>🫐 Mirtillo</div>
+              <div>🍇​ Mirtillo</div>
             </button>
             <button class="gender-option female" type="button" data-gender="female">
               <img class="mini bounce-pink" src="./mirtilli-personaggi.jpg" alt="Mirtillo e Mirtilla" />
@@ -502,107 +502,114 @@
 
   <div class="toast" id="toast" aria-live="polite"></div>
 
-  <script>
-    const state = { male: [], female: [] };
-    let selectedGender = null;
-
-    const genderButtons = document.querySelectorAll('.gender-option');
-    const form = document.getElementById('nameForm');
-    const rows = document.getElementById('rows');
-    const addRow = document.getElementById('addRow');
-    const toast = document.getElementById('toast');
-
-    genderButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        selectedGender = button.dataset.gender;
-        genderButtons.forEach((b) => b.classList.remove('active'));
-        button.classList.add('active');
-      });
-    });
-
-    addRow.addEventListener('click', () => {
-      const row = document.createElement('div');
-      row.className = 'name-row';
-      row.innerHTML = '<input type="text" placeholder="Scrivi un altro nome" /><button class="btn-small" type="button" aria-label="Rimuovi">✕</button>';
-      rows.appendChild(row);
-      row.querySelector('button').addEventListener('click', () => row.remove());
-      row.querySelector('input').focus();
-      ensureFirstRowCanRemove();
-    });
-
-    function ensureFirstRowCanRemove() {
-      const first = rows.querySelector('.name-row');
-      if (!first) return;
-      if (rows.children.length > 1 && !first.querySelector('button')) {
-        const btn = document.createElement('button');
-        btn.className = 'btn-small';
-        btn.type = 'button';
-        btn.textContent = '✕';
-        btn.setAttribute('aria-label', 'Rimuovi');
-        btn.addEventListener('click', () => {
-          if (rows.children.length > 1) first.remove();
+ <script>
+      const USE_GOOGLE_SHEETS = true;
+      const SHEET_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbwsu0q7k8A8MimvHekrftviMOmcIP9UN_XPf7Z8Ckbc9_xCOhfLri3oPd6pUCBfe9vH/exec";
+  
+      const state = { male: [], female: [] };
+      let selectedGender = null;
+  
+      const genderButtons = document.querySelectorAll('.gender-option');
+      const form = document.getElementById('nameForm');
+      const rows = document.getElementById('rows');
+      const addRow = document.getElementById('addRow');
+      const toast = document.getElementById('toast');
+  
+      genderButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          selectedGender = button.dataset.gender;
+          genderButtons.forEach((b) => b.classList.remove('active'));
+          button.classList.add('active');
         });
-        first.appendChild(btn);
-      }
-    }
-
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const proposer = document.getElementById('proposer').value.trim();
-      const names = [...rows.querySelectorAll('input')].map(i => i.value.trim()).filter(Boolean);
-
-      if (!proposer) return showToast('Scrivi prima il tuo nome.');
-      if (!selectedGender) return showToast('Scegli Mirtillo oppure Mirtilla.');
-      if (!names.length) return showToast('Aggiungi almeno un nome.');
-
-      names.forEach((name) => {
-        state[selectedGender].push({ name, proposer });
       });
-
-      render();
-      form.reset();
-      rows.innerHTML = '<div class="name-row"><input type="text" placeholder="Scrivi un nome" /></div>';
-      selectedGender = null;
-      genderButtons.forEach((b) => b.classList.remove('active'));
-      showToast('Nomi aggiunti con successo!');
-    });
-
-    function render() {
-      renderList('male', 'listMale', 'countMale', 'Mirtillo');
-      renderList('female', 'listFemale', 'countFemale', 'Mirtilla');
-    }
-
-    function renderList(key, listId, countId, label) {
-      const list = document.getElementById(listId);
-      const count = document.getElementById(countId);
-      const items = state[key];
-      count.textContent = items.length + (items.length === 1 ? ' proposta' : ' proposte');
-
-      if (!items.length) {
-        list.innerHTML = '<div class="empty">Ancora nessun nome per ' + label + '.</div>';
-        return;
+  
+      addRow.addEventListener('click', () => {
+        const row = document.createElement('div');
+        row.className = 'name-row';
+        row.innerHTML = '<input type="text" placeholder="Scrivi un altro nome" /><button class="btn-small" type="button" aria-label="Rimuovi">✕</button>';
+        rows.appendChild(row);
+        row.querySelector('button').addEventListener('click', () => row.remove());
+        row.querySelector('input').focus();
+        ensureFirstRowCanRemove();
+      });
+  
+      function ensureFirstRowCanRemove() {
+        const first = rows.querySelector('.name-row');
+        if (!first) return;
+        if (rows.children.length > 1 && !first.querySelector('button')) {
+          const btn = document.createElement('button');
+          btn.className = 'btn-small';
+          btn.type = 'button';
+          btn.textContent = '✕';
+          btn.setAttribute('aria-label', 'Rimuovi');
+          btn.addEventListener('click', () => {
+            if (rows.children.length > 1) first.remove();
+          });
+          first.appendChild(btn);
+        }
       }
-
-      list.innerHTML = items.map(item => {
-        return '<div class="item"><strong>' + escapeHtml(item.name) + '</strong><span>Proposto da ' + escapeHtml(item.proposer) + '</span></div>';
-      }).join('');
-    }
-
-    function escapeHtml(value) {
-      return value
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#39;');
-    }
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add('show');
-      clearTimeout(showToast.timer);
-      showToast.timer = setTimeout(() => toast.classList.remove('show'), 2500);
-    }
+  
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const proposer = document.getElementById('proposer').value.trim();
+        const names = [...rows.querySelectorAll('input')].map(i => i.value.trim()).filter(Boolean);
+  
+        if (!proposer) return showToast('Scrivi prima il tuo nome.');
+        if (!selectedGender) return showToast('Scegli Mirtillo oppure Mirtilla.');
+        if (!names.length) return showToast('Aggiungi almeno un nome.');
+  
+        names.forEach((name) => {
+          state[selectedGender].push({ name, proposer });
+        });
+        render();
+  
+        try {
+          await fetch(SHEET_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ proposer, gender: selectedGender, names })
+          });
+        } catch (err) {
+          console.warn('Google Sheets non raggiungibile:', err);
+        }
+  
+        form.reset();
+        rows.innerHTML = '<div class="name-row"><input type="text" placeholder="Scrivi un nome" /></div>';
+        selectedGender = null;
+        genderButtons.forEach((b) => b.classList.remove('active'));
+        showToast('Nomi aggiunti con successo! 🎉');
+      });
+  
+      function render() {
+        renderList('male',   'listMale',   'countMale',   'Mirtillo');
+        renderList('female', 'listFemale', 'countFemale', 'Mirtilla');
+      }
+  
+      function renderList(key, listId, countId, label) {
+        const list  = document.getElementById(listId);
+        const count = document.getElementById(countId);
+        const items = state[key];
+        count.textContent = items.length + (items.length === 1 ? ' proposta' : ' proposte');
+        if (!items.length) {
+          list.innerHTML = '<div class="empty">Ancora nessun nome per ' + label + '.</div>';
+          return;
+        }
+        list.innerHTML = items.map(item =>
+          '<div class="item"><strong>' + escapeHtml(item.name) + '</strong><span>Proposto da ' + escapeHtml(item.proposer) + '</span></div>'
+        ).join('');
+      }
+  
+      function escapeHtml(value) {
+        return value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+      }
+  
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove('show'), 2800);
+      }
   </script>
 </body>
 </html>
