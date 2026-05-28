@@ -603,7 +603,24 @@
       function escapeHtml(value) {
         return value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
       }
-  
+
+      async function loadFromSheets() {
+        try {
+          const res = await fetch(SHEET_SCRIPT_URL + "?action=get");
+          const rows = await res.json();
+          rows.forEach(function(row) {
+            if (row.name && row.gender && row.proposer) {
+              const g = row.gender === "male" ? "male" : "female";
+              state[g].push({ name: row.name, proposer: row.proposer });
+            }
+          });
+          render();
+        } catch(err) {
+          console.warn("Impossibile caricare i dati:", err);
+        }
+      }
+      loadFromSheets();
+   
       function showToast(message) {
         toast.textContent = message;
         toast.classList.add('show');
