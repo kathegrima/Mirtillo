@@ -10,233 +10,194 @@
   <style>
     :root {
       --bg: #fffaf6;
-      --paper: #fffdfb;
-      --line: #e8deda;
       --text: #5c4b51;
       --muted: #8d7a80;
-      --pink: #f8b7cf;
       --pink-strong: #ee78aa;
-      --blue: #b7d7fb;
       --blue-strong: #5f90df;
-      --mint: #ccefdc;
-      --butter: #f8ecb4;
-      --lavender: #ddd0ff;
       --shadow: 0 10px 30px rgba(152, 120, 130, 0.12);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0;
       font-family: 'Fredoka', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
       overflow-x: hidden;
+      min-height: 100dvh;
     }
 
-    .texture {
+    body::before {
+      content: '';
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: 0;
-      opacity: 0.8;
-      background:
-        radial-gradient(circle at 6% 18%, rgba(248, 183, 207, 0.32) 0 26px, transparent 27px),
-        radial-gradient(circle at 93% 22%, rgba(183, 215, 251, 0.34) 0 28px, transparent 29px),
-        radial-gradient(circle at 10% 72%, rgba(204, 239, 220, 0.36) 0 24px, transparent 25px),
-        radial-gradient(circle at 90% 82%, rgba(248, 236, 180, 0.38) 0 24px, transparent 25px),
-        radial-gradient(circle at 18% 44%, rgba(221, 208, 255, 0.28) 0 16px, transparent 17px),
-        radial-gradient(circle at 82% 58%, rgba(248, 183, 207, 0.24) 0 18px, transparent 19px),
-        linear-gradient(transparent, transparent);
-    }
-
-    .texture::before,
-    .texture::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 90px;
-      opacity: 0.95;
-      background-repeat: repeat-y;
-      background-size: 72px 150px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.04));
-    }
-
-    .texture::before {
-      left: 0;
+      pointer-events: none;
       background-image:
-        linear-gradient(165deg, transparent 0 10%, #f7a9c8 10% 70%, #d97eab 70% 76%, transparent 76%),
-        linear-gradient(165deg, transparent 0 10%, #a9d0ff 10% 70%, #79a8df 70% 76%, transparent 76%),
-        linear-gradient(165deg, transparent 0 10%, #c7eec5 10% 70%, #95c99d 70% 76%, transparent 76%),
-        linear-gradient(165deg, transparent 0 10%, #f8e5a1 10% 70%, #d8c26f 70% 76%, transparent 76%);
-      background-position: 8px 0, 10px 76px, 6px 152px, 10px 228px;
-    }
-
-    .texture::after {
-      right: 0;
-      background-image:
-        linear-gradient(195deg, transparent 0 10%, #f7a9c8 10% 70%, #d97eab 70% 76%, transparent 76%),
-        linear-gradient(195deg, transparent 0 10%, #a9d0ff 10% 70%, #79a8df 70% 76%, transparent 76%),
-        linear-gradient(195deg, transparent 0 10%, #c7eec5 10% 70%, #95c99d 70% 76%, transparent 76%),
-        linear-gradient(195deg, transparent 0 10%, #f8e5a1 10% 70%, #d8c26f 70% 76%, transparent 76%);
-      background-position: 8px 24px, 10px 100px, 6px 176px, 10px 252px;
+        radial-gradient(circle, #f8b7cf 1.5px, transparent 1.5px),
+        radial-gradient(circle, #b7d7fb 1.5px, transparent 1.5px),
+        radial-gradient(circle, #ccefdc 1.5px, transparent 1.5px),
+        radial-gradient(circle, #f8ecb4 1.5px, transparent 1.5px),
+        radial-gradient(circle, #ddd0ff 1.5px, transparent 1.5px),
+        radial-gradient(circle, #f8b7cf 1px, transparent 1px),
+        radial-gradient(circle, #b7d7fb 1px, transparent 1px);
+      background-size:
+        97px 97px,
+        113px 113px,
+        79px 79px,
+        131px 131px,
+        89px 89px,
+        61px 61px,
+        71px 71px;
+      background-position:
+        12px 18px,
+        54px 42px,
+        33px 71px,
+        80px 9px,
+        6px 55px,
+        44px 88px,
+        92px 63px;
+      opacity: 0.55;
     }
 
     .page {
       position: relative;
       z-index: 1;
-      width: min(1100px, calc(100% - 32px));
+      width: min(1100px, calc(100% - 24px));
       margin: 0 auto;
-      padding: 24px 0 72px;
+      padding: 20px 0 100px;
     }
 
     .hero {
-      background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,250,246,0.92));
-      border: 2px solid rgba(232, 222, 218, 0.9);
-      border-radius: 36px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(232,222,218,0.9);
+      border-radius: 32px;
       box-shadow: var(--shadow);
-      padding: 28px 24px 34px;
+      padding: clamp(20px, 4vw, 36px) clamp(16px, 4vw, 32px) clamp(24px, 4vw, 36px);
       text-align: center;
       margin-top: 12px;
     }
 
     .pill {
       display: inline-block;
-      padding: 8px 16px;
+      padding: 7px 16px;
       border-radius: 999px;
       background: white;
       border: 2px solid #f1e4df;
       color: var(--muted);
-      font-size: 15px;
+      font-size: clamp(13px, 2vw, 15px);
     }
 
     h1 {
-      font-size: clamp(2rem, 3vw + 1rem, 4rem);
+      font-size: clamp(1.9rem, 5vw, 4rem);
       line-height: 1.05;
-      margin: 18px auto 12px;
-      max-width: 12ch;
+      margin: 14px auto 10px;
       color: var(--text);
     }
 
-    .hero p {
-      font-size: clamp(1rem, 1vw + 0.8rem, 1.25rem);
+    .hero > p {
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
       max-width: 44ch;
-      margin: 0 auto 22px;
+      margin: 0 auto 20px;
       color: var(--muted);
     }
 
-    .hero-characters {
-      display: flex;
-      justify-content: center;
-      align-items: end;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
     .hero-card {
-      width: min(100%, 320px);
+      width: min(100%, 300px);
+      margin: 0 auto;
       background: rgba(255,255,255,0.78);
       border: 2px solid #f0e4df;
-      border-radius: 28px;
-      padding: 16px 16px 14px;
-      box-shadow: 0 8px 24px rgba(160, 140, 150, 0.08);
+      border-radius: 24px;
+      padding: 14px;
+      box-shadow: 0 8px 24px rgba(160,140,150,0.08);
     }
 
     .hero-card img {
       width: 100%;
       height: auto;
-      border-radius: 22px;
+      border-radius: 18px;
       display: block;
-      object-fit: cover;
     }
 
     .bounce-blue { animation: bounceBlue 2.7s ease-in-out infinite; }
-    .bounce-pink { animation: bouncePink 2.5s ease-in-out infinite; }
 
     @keyframes bounceBlue {
-      0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+      0%,100% { transform: translateY(0) rotate(-1.5deg); }
       30% { transform: translateY(-14px) rotate(1deg); }
       60% { transform: translateY(-4px) rotate(-1deg); }
     }
-    @keyframes bouncePink {
-      0%, 100% { transform: translateY(0) rotate(1.5deg); }
-      30% { transform: translateY(-12px) rotate(-1deg); }
-      60% { transform: translateY(-3px) rotate(1deg); }
-    }
 
     .section {
-      margin-top: 28px;
-      background: rgba(255,255,255,0.8);
-      border: 2px solid rgba(232, 222, 218, 0.9);
-      border-radius: 32px;
-      padding: 24px;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(232,222,218,0.9);
+      border-radius: 28px;
+      padding: clamp(16px, 3vw, 28px);
       box-shadow: var(--shadow);
     }
 
     h2 {
-      font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem);
-      margin: 0 0 6px;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      margin: 0 0 4px;
       text-align: center;
     }
 
     .subtitle {
       text-align: center;
       color: var(--muted);
-      margin: 0 0 22px;
-      font-size: 1rem;
+      margin: 0 0 20px;
+      font-size: clamp(0.88rem, 2vw, 1rem);
     }
 
     .form-grid {
       display: grid;
       gap: 16px;
-      max-width: 760px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
     label {
       display: block;
       font-size: 0.95rem;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--text);
     }
 
     input[type="text"] {
       width: 100%;
       border: 2px solid #eadfdb;
-      border-radius: 16px;
-      padding: 14px 16px;
+      border-radius: 14px;
+      padding: 13px 15px;
       font: inherit;
+      font-size: clamp(0.95rem, 2vw, 1rem);
       background: #fffdfc;
       color: var(--text);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
     }
 
     input[type="text"]:focus {
       outline: none;
       border-color: #d8bfd0;
-      box-shadow: 0 0 0 4px rgba(248, 183, 207, 0.18);
+      box-shadow: 0 0 0 4px rgba(248,183,207,0.18);
     }
 
     .gender-select {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
     .gender-option {
       border: 2px solid #eadfdb;
-      border-radius: 22px;
+      border-radius: 18px;
       background: white;
-      padding: 16px 14px;
+      padding: 14px 10px;
       text-align: center;
       cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      transition: transform .18s, border-color .18s, background .18s;
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
 
     .gender-option:hover { transform: translateY(-2px); }
@@ -244,19 +205,19 @@
     .gender-option.active.female { border-color: var(--pink-strong); background: #fff0f7; }
 
     .gender-option .mini {
-      width: 72px;
+      width: 60px;
+      height: 60px;
       margin: 0 auto 8px;
       display: block;
-      border-radius: 16px;
+      border-radius: 12px;
+      object-fit: cover;
     }
 
     .rows { display: grid; gap: 10px; }
-    .name-row { display: flex; gap: 10px; }
+    .name-row { display: flex; gap: 8px; align-items: center; }
     .name-row input { flex: 1; }
 
-    .btn,
-    .btn-secondary,
-    .btn-small {
+    .btn, .btn-secondary, .btn-small {
       border: 0;
       font: inherit;
       font-weight: 600;
@@ -267,8 +228,11 @@
     .btn {
       background: linear-gradient(90deg, #f7bfd4, #d7cbff, #bbdefb);
       color: #5c4b51;
-      padding: 14px 22px;
-      box-shadow: 0 8px 18px rgba(190, 170, 190, 0.18);
+      padding: 14px 28px;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      box-shadow: 0 8px 18px rgba(190,170,190,0.18);
+      width: 100%;
+      max-width: 320px;
     }
 
     .btn-secondary {
@@ -276,15 +240,16 @@
       color: #52755b;
       padding: 11px 16px;
       border: 2px dashed #b8e0c3;
-      width: fit-content;
+      font-size: 0.95rem;
     }
 
     .btn-small {
       background: #fff1f3;
       color: #b96886;
-      width: 44px;
-      min-width: 44px;
-      height: 44px;
+      width: 42px;
+      min-width: 42px;
+      height: 42px;
+      font-size: 1rem;
     }
 
     .actions {
@@ -295,16 +260,13 @@
 
     .two-cols {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
     }
 
     .box {
-      border-radius: 28px;
-      padding: 18px;
-      min-height: 280px;
-      position: relative;
-      overflow: hidden;
+      border-radius: 24px;
+      padding: 16px;
     }
 
     .box.male { background: #eef6ff; border: 2px solid #cfe3fb; }
@@ -313,133 +275,179 @@
     .box-head {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid rgba(0,0,0,0.06);
     }
 
     .box-head img {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       object-fit: cover;
       background: white;
-      padding: 4px;
+      padding: 3px;
     }
 
     h3 {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
     }
 
     .count {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
     }
 
     .list {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
 
     .item {
       background: rgba(255,255,255,0.9);
-      border-radius: 18px;
-      padding: 12px 14px;
-      border: 2px solid rgba(255,255,255,0.7);
+      border-radius: 14px;
+      padding: 10px 13px;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
     }
 
-    .item strong {
+    .item-left strong {
       display: block;
-      font-size: 1.05rem;
-      margin-bottom: 2px;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
     }
 
-    .item span {
+    .item-left span {
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.82rem;
     }
+
+    .item-score {
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .box.male .item-score { background: #d4e8ff; color: #3a6ea8; }
+    .box.female .item-score { background: #fdd6e8; color: #b84d7a; }
 
     .empty {
       display: grid;
       place-items: center;
-      min-height: 150px;
+      min-height: 120px;
       text-align: center;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 0.95rem;
+      padding: 20px 0;
     }
 
     .toast {
       position: fixed;
       left: 50%;
-      bottom: 22px;
+      bottom: 80px;
       transform: translateX(-50%) translateY(120px);
       background: white;
       color: var(--text);
       border: 2px solid #efdde3;
       border-radius: 999px;
-      padding: 12px 18px;
+      padding: 12px 20px;
       box-shadow: var(--shadow);
       transition: transform .28s ease;
-      z-index: 20;
+      z-index: 100;
       text-align: center;
-      max-width: calc(100% - 24px);
+      max-width: calc(100% - 32px);
+      font-size: clamp(0.88rem, 2vw, 1rem);
     }
 
     .toast.show { transform: translateX(-50%) translateY(0); }
 
+    .fab {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99;
+      background: linear-gradient(90deg, #f7bfd4, #d7cbff, #bbdefb);
+      color: #5c4b51;
+      font: inherit;
+      font-weight: 700;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      border: none;
+      border-radius: 999px;
+      padding: 13px 28px;
+      box-shadow: 0 8px 24px rgba(190,170,190,0.35);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .18s, box-shadow .18s;
+    }
+
+    .fab:hover {
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 12px 28px rgba(190,170,190,0.4);
+    }
+
+    .fab:active {
+      transform: translateX(-50%) translateY(0);
+    }
+
     .footer {
       text-align: center;
       color: var(--muted);
-      padding-top: 8px;
-      font-size: 0.95rem;
+      padding-top: 12px;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 760px) {
-      .texture::before, .texture::after { width: 52px; background-size: 46px 120px; }
-      .page { width: min(100% - 16px, 1100px); }
-      .hero, .section { border-radius: 24px; padding: 20px 16px; }
-      .two-cols, .gender-select { grid-template-columns: 1fr; }
-      .hero-characters { gap: 14px; }
-      .hero-card { max-width: 100%; }
-      .box { min-height: auto; }
+    @media (max-width: 600px) {
+      .two-cols { grid-template-columns: 1fr; }
+      .page { width: min(100% - 16px, 1100px); padding-bottom: 100px; }
+      .hero, .section { border-radius: 24px; padding: 18px 14px; }
+      .gender-option .mini { width: 56px; height: 56px; }
+      .item { align-items: flex-start; }
+      .fab { width: calc(100% - 28px); max-width: 420px; }
     }
   </style>
 </head>
 <body>
-  <div class="texture" aria-hidden="true"></div>
 
   <div class="page">
+
     <header class="hero">
       <div class="pill">Un posto dolce per scegliere i nomi</div>
       <h1>Mirtillo o Mirtilla?</h1>
       <p>Scrivi il tuo nome, aggiungi uno o più nomi per il nascituro e aiutaci a trovare quello perfetto.</p>
-
-      <div class="hero-characters">
-        <div class="hero-card bounce-blue">
-          <img src="./mirtilli-personaggi.jpg" alt="I due mirtilli mascotte, con Mirtillo azzurro e Mirtilla rosa" />
-        </div>
+      <div class="hero-card bounce-blue">
+        <img src="./mirtilli-personaggi.jpg" alt="Mirtillo e Mirtilla" />
       </div>
     </header>
 
-    <section class="section">
+    <section class="section" id="form-section">
       <h2>Scrivi la tua proposta</h2>
       <p class="subtitle">Ogni persona può inserire più nomi. Noi li dividiamo tra Mirtillo e Mirtilla.</p>
 
       <form id="nameForm" class="form-grid">
         <div>
           <label for="proposer">Il tuo nome</label>
-          <input id="proposer" type="text" placeholder="Per esempio: Zia Paola" />
+          <input id="proposer" type="text" placeholder="Per esempio: Zia Paola" autocomplete="given-name" />
         </div>
 
         <div>
           <label>Scegli la sezione giusta</label>
           <div class="gender-select">
             <button class="gender-option male" type="button" data-gender="male">
-              <img class="mini" src="./mirtillo.jpg" alt="Mirtillo e Mirtilla" />
-              <div>🍇​ Mirtillo</div>
+              <img class="mini" src="./mirtillo.jpg" alt="Mirtillo" />
+              <div>🍇 Mirtillo</div>
             </button>
             <button class="gender-option female" type="button" data-gender="female">
-              <img class="mini" src="./mirtilla.jpg" alt="Mirtillo e Mirtilla" />
+              <img class="mini" src="./mirtilla.jpg" alt="Mirtilla" />
               <div>🌸 Mirtilla</div>
             </button>
           </div>
@@ -454,7 +462,7 @@
           </div>
         </div>
 
-        <div style="display:flex; justify-content:center;">
+        <div style="display:flex;justify-content:center;">
           <button class="btn-secondary" type="button" id="addRow">+ Aggiungi un altro nome</button>
         </div>
 
@@ -466,14 +474,14 @@
 
     <section class="section">
       <h2>Tutti i nomi raccolti</h2>
-      <p class="subtitle">Ogni proposta resta nella colonna giusta, con il nome di chi l'ha suggerita.</p>
+      <p class="subtitle">I nomi ripetuti vengono raggruppati con il conteggio tra parentesi.</p>
 
       <div class="two-cols">
         <article class="box male">
           <div class="box-head">
-            <img src="./mirtillo.jpg" alt="Mirtillo e Mirtilla" />
+            <img src="./mirtillo.jpg" alt="Mirtillo" />
             <div>
-              <h3>🍇​ Mirtillo</h3>
+              <h3>🍇 Mirtillo</h3>
               <div class="count" id="countMale">0 proposte</div>
             </div>
           </div>
@@ -484,7 +492,7 @@
 
         <article class="box female">
           <div class="box-head">
-            <img src="./mirtilla.jpg" alt="Mirtillo e Mirtilla" />
+            <img src="./mirtilla.jpg" alt="Mirtilla" />
             <div>
               <h3>🌸 Mirtilla</h3>
               <div class="count" id="countFemale">0 proposte</div>
@@ -497,136 +505,176 @@
       </div>
     </section>
 
-    <div class="footer">Creato con due mirtilli super teneri!</div>
+    <div class="footer">Creato con due mirtilli super teneri! 💕</div>
   </div>
+
+  <button class="fab" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
+    ✏️ Proponi un nome
+  </button>
 
   <div class="toast" id="toast" aria-live="polite"></div>
 
- <script>
-      const USE_GOOGLE_SHEETS = true;
-      const SHEET_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbwsu0q7k8A8MimvHekrftviMOmcIP9UN_XPf7Z8Ckbc9_xCOhfLri3oPd6pUCBfe9vH/exec";
-  
-      const state = { male: [], female: [] };
-      let selectedGender = null;
-  
-      const genderButtons = document.querySelectorAll('.gender-option');
-      const form = document.getElementById('nameForm');
-      const rows = document.getElementById('rows');
-      const addRow = document.getElementById('addRow');
-      const toast = document.getElementById('toast');
-  
-      genderButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          selectedGender = button.dataset.gender;
-          genderButtons.forEach((b) => b.classList.remove('active'));
-          button.classList.add('active');
+  <script>
+    const SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsu0q7k8A8MimvHekrftviMOmcIP9UN_XPf7Z8Ckbc9_xCOhfLri3oPd6pUCBfe9vH/exec";
+
+    const state = { male: [], female: [] };
+    let selectedGender = null;
+
+    const genderButtons = document.querySelectorAll('.gender-option');
+    const form = document.getElementById('nameForm');
+    const rowsEl = document.getElementById('rows');
+    const addRowBtn = document.getElementById('addRow');
+    const toast = document.getElementById('toast');
+
+    genderButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedGender = btn.dataset.gender;
+        genderButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    addRowBtn.addEventListener('click', () => {
+      const row = document.createElement('div');
+      row.className = 'name-row';
+      row.innerHTML = '<input type="text" placeholder="Scrivi un altro nome" /><button class="btn-small" type="button" aria-label="Rimuovi">✕</button>';
+      rowsEl.appendChild(row);
+      row.querySelector('button').addEventListener('click', () => row.remove());
+      row.querySelector('input').focus();
+      ensureFirstRowCanRemove();
+    });
+
+    function ensureFirstRowCanRemove() {
+      const first = rowsEl.querySelector('.name-row');
+      if (!first || first.querySelector('button')) return;
+      if (rowsEl.children.length > 1) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-small';
+        btn.type = 'button';
+        btn.textContent = '✕';
+        btn.setAttribute('aria-label', 'Rimuovi');
+        btn.addEventListener('click', () => {
+          if (rowsEl.children.length > 1) first.remove();
         });
-      });
-  
-      addRow.addEventListener('click', () => {
-        const row = document.createElement('div');
-        row.className = 'name-row';
-        row.innerHTML = '<input type="text" placeholder="Scrivi un altro nome" /><button class="btn-small" type="button" aria-label="Rimuovi">✕</button>';
-        rows.appendChild(row);
-        row.querySelector('button').addEventListener('click', () => row.remove());
-        row.querySelector('input').focus();
-        ensureFirstRowCanRemove();
-      });
-  
-      function ensureFirstRowCanRemove() {
-        const first = rows.querySelector('.name-row');
-        if (!first) return;
-        if (rows.children.length > 1 && !first.querySelector('button')) {
-          const btn = document.createElement('button');
-          btn.className = 'btn-small';
-          btn.type = 'button';
-          btn.textContent = '✕';
-          btn.setAttribute('aria-label', 'Rimuovi');
-          btn.addEventListener('click', () => {
-            if (rows.children.length > 1) first.remove();
-          });
-          first.appendChild(btn);
-        }
+        first.appendChild(btn);
       }
-  
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const proposer = document.getElementById('proposer').value.trim();
-        const names = [...rows.querySelectorAll('input')].map(i => i.value.trim()).filter(Boolean);
-  
-        if (!proposer) return showToast('Scrivi prima il tuo nome.');
-        if (!selectedGender) return showToast('Scegli Mirtillo oppure Mirtilla.');
-        if (!names.length) return showToast('Aggiungi almeno un nome.');
-  
-        names.forEach((name) => {
-          state[selectedGender].push({ name, proposer });
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const proposer = document.getElementById('proposer').value.trim();
+      const names = [...rowsEl.querySelectorAll('input')].map(i => i.value.trim()).filter(Boolean);
+
+      if (!proposer) return showToast('Scrivi prima il tuo nome.');
+      if (!selectedGender) return showToast('Scegli Mirtillo oppure Mirtilla.');
+      if (!names.length) return showToast('Aggiungi almeno un nome.');
+
+      names.forEach(name => state[selectedGender].push({ name, proposer }));
+      render();
+
+      try {
+        await fetch(SHEET_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ proposer, gender: selectedGender, names })
         });
-        render();
-  
-        try {
-          await fetch(SHEET_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ proposer, gender: selectedGender, names })
-          });
-        } catch (err) {
-          console.warn('Google Sheets non raggiungibile:', err);
-        }
-  
-        form.reset();
-        rows.innerHTML = '<div class="name-row"><input type="text" placeholder="Scrivi un nome" /></div>';
-        selectedGender = null;
-        genderButtons.forEach((b) => b.classList.remove('active'));
-        showToast('Nomi aggiunti con successo! 🎉');
-      });
-  
-      function render() {
-        renderList('male',   'listMale',   'countMale',   'Mirtillo');
-        renderList('female', 'listFemale', 'countFemale', 'Mirtilla');
-      }
-  
-      function renderList(key, listId, countId, label) {
-        const list  = document.getElementById(listId);
-        const count = document.getElementById(countId);
-        const items = state[key];
-        count.textContent = items.length + (items.length === 1 ? ' proposta' : ' proposte');
-        if (!items.length) {
-          list.innerHTML = '<div class="empty">Ancora nessun nome per ' + label + '.</div>';
-          return;
-        }
-        list.innerHTML = items.map(item =>
-          '<div class="item"><strong>' + escapeHtml(item.name) + '</strong><span>Proposto da ' + escapeHtml(item.proposer) + '</span></div>'
-        ).join('');
-      }
-  
-      function escapeHtml(value) {
-        return value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+      } catch (err) {
+        console.warn('Sheets non raggiungibile:', err);
       }
 
-      async function loadFromSheets() {
-        try {
-          const res = await fetch(SHEET_SCRIPT_URL);
-          const data = await res.json();
-          data.forEach(function(row) {
-            if (row.name && row.gender && row.proposer) {
-              const g = row.gender === "male" ? "male" : "female";
-              state[g].push({ name: row.name, proposer: row.proposer });
-            }
-          });
-          render();
-        } catch(err) {
-          console.warn("Impossibile caricare i dati:", err);
+      form.reset();
+      rowsEl.innerHTML = '<div class="name-row"><input type="text" placeholder="Scrivi un nome" /></div>';
+      selectedGender = null;
+      genderButtons.forEach(b => b.classList.remove('active'));
+      showToast('Nomi aggiunti con successo! 🎉');
+    });
+
+    function render() {
+      renderList('male', 'listMale', 'countMale', 'Mirtillo');
+      renderList('female', 'listFemale', 'countFemale', 'Mirtilla');
+    }
+
+    function renderList(key, listId, countId, label) {
+      const list = document.getElementById(listId);
+      const count = document.getElementById(countId);
+      const items = state[key];
+
+      const grouped = {};
+      items.forEach(({ name, proposer }) => {
+        const cleanName = name.trim();
+        const groupKey = cleanName.toLowerCase();
+        if (!grouped[groupKey]) {
+          grouped[groupKey] = {
+            name: cleanName,
+            proposers: [],
+            count: 0
+          };
         }
+        grouped[groupKey].count++;
+        if (!grouped[groupKey].proposers.includes(proposer)) {
+          grouped[groupKey].proposers.push(proposer);
+        }
+      });
+
+      const entries = Object.values(grouped).sort((a, b) => b.count - a.count);
+      const total = items.length;
+
+      count.textContent = total + (total === 1 ? ' proposta' : ' proposte') +
+        (entries.length < total ? ' · ' + entries.length + ' nomi unici' : '');
+
+      if (!entries.length) {
+        list.innerHTML = '<div class="empty">Ancora nessun nome per ' + label + '.</div>';
+        return;
       }
-      loadFromSheets();
-   
-      function showToast(message) {
-        toast.textContent = message;
-        toast.classList.add('show');
-        clearTimeout(showToast.timer);
-        showToast.timer = setTimeout(() => toast.classList.remove('show'), 2800);
+
+      list.innerHTML = entries.map(entry => {
+        const scoreHtml = entry.count > 1
+          ? '<span class="item-score">(' + entry.count + ')</span>'
+          : '';
+        const proposerText = entry.proposers.join(', ');
+        return '<div class="item">' +
+          '<div class="item-left">' +
+            '<strong>' + escapeHtml(entry.name) + '</strong>' +
+            '<span>da ' + escapeHtml(proposerText) + '</span>' +
+          '</div>' +
+          scoreHtml +
+        '</div>';
+      }).join('');
+    }
+
+    function escapeHtml(v) {
+      return v.replaceAll('&','&amp;')
+              .replaceAll('<','&lt;')
+              .replaceAll('>','&gt;')
+              .replaceAll('"','&quot;')
+              .replaceAll("'",'&#39;');
+    }
+
+    async function loadFromSheets() {
+      try {
+        const res = await fetch(SHEET_SCRIPT_URL);
+        const data = await res.json();
+        data.forEach(row => {
+          if (row.name && row.gender && row.proposer) {
+            const g = row.gender === 'male' ? 'male' : 'female';
+            state[g].push({ name: row.name, proposer: row.proposer });
+          }
+        });
+        render();
+      } catch (err) {
+        console.warn('Impossibile caricare i dati:', err);
       }
+    }
+
+    loadFromSheets();
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
   </script>
 </body>
 </html>
