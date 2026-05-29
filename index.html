@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mirtillo e Mirtilla</title>
+  <title>🍀 Chi sarà? Chi arriverà, 🍇 Mirtillo o 🌸 Mirtilla?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
@@ -28,6 +28,7 @@
       min-height: 100dvh;
     }
 
+    /* ── TEXTURE: puntini pastello sparsi ── */
     body::before {
       content: '';
       position: fixed;
@@ -40,8 +41,8 @@
         radial-gradient(circle, #ccefdc 1.5px, transparent 1.5px),
         radial-gradient(circle, #f8ecb4 1.5px, transparent 1.5px),
         radial-gradient(circle, #ddd0ff 1.5px, transparent 1.5px),
-        radial-gradient(circle, #f8b7cf 1px, transparent 1px),
-        radial-gradient(circle, #b7d7fb 1px, transparent 1px);
+        radial-gradient(circle, #f8b7cf 1px,   transparent 1px),
+        radial-gradient(circle, #b7d7fb 1px,   transparent 1px);
       background-size:
         97px 97px,
         113px 113px,
@@ -61,6 +62,7 @@
       opacity: 0.55;
     }
 
+    /* ── LAYOUT ── */
     .page {
       position: relative;
       z-index: 1;
@@ -69,6 +71,7 @@
       padding: 20px 0 100px;
     }
 
+    /* ── HERO ── */
     .hero {
       background: rgba(255,255,255,0.82);
       backdrop-filter: blur(8px);
@@ -113,22 +116,19 @@
       padding: 14px;
       box-shadow: 0 8px 24px rgba(160,140,150,0.08);
     }
-
     .hero-card img {
-      width: 100%;
-      height: auto;
+      width: 100%; height: auto;
       border-radius: 18px;
       display: block;
     }
-
     .bounce-blue { animation: bounceBlue 2.7s ease-in-out infinite; }
-
     @keyframes bounceBlue {
       0%,100% { transform: translateY(0) rotate(-1.5deg); }
-      30% { transform: translateY(-14px) rotate(1deg); }
-      60% { transform: translateY(-4px) rotate(-1deg); }
+      30%      { transform: translateY(-14px) rotate(1deg); }
+      60%      { transform: translateY(-4px) rotate(-1deg); }
     }
 
+    /* ── SECTION ── */
     .section {
       margin-top: 20px;
       background: rgba(255,255,255,0.82);
@@ -144,7 +144,6 @@
       margin: 0 0 4px;
       text-align: center;
     }
-
     .subtitle {
       text-align: center;
       color: var(--muted);
@@ -152,20 +151,19 @@
       font-size: clamp(0.88rem, 2vw, 1rem);
     }
 
+    /* ── FORM ── */
     .form-grid {
       display: grid;
       gap: 16px;
       max-width: 680px;
       margin: 0 auto;
     }
-
     label {
       display: block;
       font-size: 0.95rem;
       margin-bottom: 6px;
       color: var(--text);
     }
-
     input[type="text"] {
       width: 100%;
       border: 2px solid #eadfdb;
@@ -176,19 +174,18 @@
       background: #fffdfc;
       color: var(--text);
     }
-
     input[type="text"]:focus {
       outline: none;
       border-color: #d8bfd0;
       box-shadow: 0 0 0 4px rgba(248,183,207,0.18);
     }
 
+    /* ── GENDER SELECT: pill buttons ── */
     .gender-select {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-
     .gender-option {
       border: 2px solid #eadfdb;
       border-radius: 18px;
@@ -199,32 +196,26 @@
       transition: transform .18s, border-color .18s, background .18s;
       font-size: clamp(0.9rem, 2vw, 1rem);
     }
-
     .gender-option:hover { transform: translateY(-2px); }
-    .gender-option.active.male { border-color: var(--blue-strong); background: #eef6ff; }
+    .gender-option.active.male   { border-color: var(--blue-strong); background: #eef6ff; }
     .gender-option.active.female { border-color: var(--pink-strong); background: #fff0f7; }
-
     .gender-option .mini {
-      width: 60px;
-      height: 60px;
+      width: 60px; height: 60px;
       margin: 0 auto 8px;
       display: block;
       border-radius: 12px;
       object-fit: cover;
     }
 
+    /* ── NAME ROWS ── */
     .rows { display: grid; gap: 10px; }
     .name-row { display: flex; gap: 8px; align-items: center; }
     .name-row input { flex: 1; }
 
+    /* ── BUTTONS ── */
     .btn, .btn-secondary, .btn-small {
-      border: 0;
-      font: inherit;
-      font-weight: 600;
-      border-radius: 999px;
-      cursor: pointer;
+      border: 0; font: inherit; font-weight: 600; border-radius: 999px; cursor: pointer;
     }
-
     .btn {
       background: linear-gradient(90deg, #f7bfd4, #d7cbff, #bbdefb);
       color: #5c4b51;
@@ -234,77 +225,52 @@
       width: 100%;
       max-width: 320px;
     }
-
     .btn-secondary {
-      background: #eef8f1;
-      color: #52755b;
+      background: #eef8f1; color: #52755b;
       padding: 11px 16px;
       border: 2px dashed #b8e0c3;
       font-size: 0.95rem;
     }
-
     .btn-small {
-      background: #fff1f3;
-      color: #b96886;
-      width: 42px;
-      min-width: 42px;
-      height: 42px;
+      background: #fff1f3; color: #b96886;
+      width: 42px; min-width: 42px; height: 42px;
       font-size: 1rem;
     }
+    .actions { display: flex; justify-content: center; margin-top: 8px; }
 
-    .actions {
-      display: flex;
-      justify-content: center;
-      margin-top: 8px;
-    }
-
+    /* ── TWO COLS (bacheca) ── */
     .two-cols {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
       gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .two-cols { grid-template-columns: 1fr; }
     }
 
     .box {
       border-radius: 24px;
       padding: 16px;
     }
-
-    .box.male { background: #eef6ff; border: 2px solid #cfe3fb; }
+    .box.male   { background: #eef6ff; border: 2px solid #cfe3fb; }
     .box.female { background: #fff0f7; border: 2px solid #f7c8db; }
 
     .box-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       margin-bottom: 14px;
       padding-bottom: 12px;
       border-bottom: 1.5px solid rgba(0,0,0,0.06);
     }
-
     .box-head img {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      object-fit: cover;
-      background: white;
-      padding: 3px;
+      width: 48px; height: 48px;
+      border-radius: 12px; object-fit: cover;
+      background: white; padding: 3px;
     }
+    h3 { margin: 0; font-size: clamp(1.1rem, 2vw, 1.4rem); }
+    .count { color: var(--muted); font-size: 0.88rem; }
 
-    h3 {
-      margin: 0;
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
-    }
-
-    .count {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .list {
-      display: grid;
-      gap: 8px;
-    }
-
+    /* ── NAME ITEMS ── */
+    .list { display: grid; gap: 8px; }
     .item {
       background: rgba(255,255,255,0.9);
       border-radius: 14px;
@@ -315,17 +281,14 @@
       justify-content: space-between;
       gap: 8px;
     }
-
     .item-left strong {
       display: block;
       font-size: clamp(0.95rem, 2vw, 1.05rem);
     }
-
     .item-left span {
       color: var(--muted);
       font-size: 0.82rem;
     }
-
     .item-score {
       background: rgba(0,0,0,0.06);
       border-radius: 999px;
@@ -336,83 +299,52 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
-
-    .box.male .item-score { background: #d4e8ff; color: #3a6ea8; }
+    .box.male   .item-score { background: #d4e8ff; color: #3a6ea8; }
     .box.female .item-score { background: #fdd6e8; color: #b84d7a; }
 
     .empty {
-      display: grid;
-      place-items: center;
-      min-height: 120px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
+      display: grid; place-items: center;
+      min-height: 120px; text-align: center;
+      color: var(--muted); font-size: 0.95rem;
       padding: 20px 0;
     }
 
+    /* ── TOAST ── */
     .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 80px;
+      position: fixed; left: 50%; bottom: 80px;
       transform: translateX(-50%) translateY(120px);
-      background: white;
-      color: var(--text);
-      border: 2px solid #efdde3;
-      border-radius: 999px;
-      padding: 12px 20px;
-      box-shadow: var(--shadow);
+      background: white; color: var(--text);
+      border: 2px solid #efdde3; border-radius: 999px;
+      padding: 12px 20px; box-shadow: var(--shadow);
       transition: transform .28s ease;
-      z-index: 100;
-      text-align: center;
+      z-index: 100; text-align: center;
       max-width: calc(100% - 32px);
       font-size: clamp(0.88rem, 2vw, 1rem);
     }
-
     .toast.show { transform: translateX(-50%) translateY(0); }
 
+    /* ── FAB: bottone fisso in basso ── */
     .fab {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
+      position: fixed; bottom: 20px; left: 50%;
       transform: translateX(-50%);
       z-index: 99;
       background: linear-gradient(90deg, #f7bfd4, #d7cbff, #bbdefb);
-      color: #5c4b51;
-      font: inherit;
-      font-weight: 700;
+      color: #5c4b51; font: inherit; font-weight: 700;
       font-size: clamp(0.9rem, 2vw, 1rem);
-      border: none;
-      border-radius: 999px;
+      border: none; border-radius: 999px;
       padding: 13px 28px;
       box-shadow: 0 8px 24px rgba(190,170,190,0.35);
       cursor: pointer;
       white-space: nowrap;
       transition: transform .18s, box-shadow .18s;
     }
+    .fab:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 12px 28px rgba(190,170,190,0.4); }
+    .fab:active { transform: translateX(-50%) translateY(0); }
 
-    .fab:hover {
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 12px 28px rgba(190,170,190,0.4);
-    }
-
-    .fab:active {
-      transform: translateX(-50%) translateY(0);
-    }
-
+    /* ── FOOTER ── */
     .footer {
-      text-align: center;
-      color: var(--muted);
-      padding-top: 12px;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      .two-cols { grid-template-columns: 1fr; }
-      .page { width: min(100% - 16px, 1100px); padding-bottom: 100px; }
-      .hero, .section { border-radius: 24px; padding: 18px 14px; }
-      .gender-option .mini { width: 56px; height: 56px; }
-      .item { align-items: flex-start; }
-      .fab { width: calc(100% - 28px); max-width: 420px; }
+      text-align: center; color: var(--muted);
+      padding-top: 12px; font-size: 0.9rem;
     }
   </style>
 </head>
@@ -420,18 +352,20 @@
 
   <div class="page">
 
+    <!-- HERO -->
     <header class="hero">
-      <div class="pill">Un posto dolce per scegliere i nomi</div>
-      <h1>Mirtillo o Mirtilla?</h1>
-      <p>Scrivi il tuo nome, aggiungi uno o più nomi per il nascituro e aiutaci a trovare quello perfetto.</p>
+      <div class="pill">Scopriremo insieme chi ci aveva visto giusto! 🍀</div>
+      <h1>Chi arriverà — 🍇 Mirtillo o 🌸 Mirtilla?</h1>
+      <p>Lascia il tuo pronostico sul sesso e sul nome del bebè. Al grande momento vedremo chi ci aveva visto giusto!</p>
       <div class="hero-card bounce-blue">
         <img src="./mirtilli-personaggi.jpg" alt="Mirtillo e Mirtilla" />
       </div>
     </header>
 
+    <!-- FORM -->
     <section class="section" id="form-section">
-      <h2>Scrivi la tua proposta</h2>
-      <p class="subtitle">Ogni persona può inserire più nomi. Noi li dividiamo tra Mirtillo e Mirtilla.</p>
+      <h2>Il tuo pronostico</h2>
+      <p class="subtitle">Pensi che sarà Mirtillo o Mirtilla? E come si chiamerà? Puoi inserire più nomi!</p>
 
       <form id="nameForm" class="form-grid">
         <div>
@@ -440,7 +374,7 @@
         </div>
 
         <div>
-          <label>Scegli la sezione giusta</label>
+          <label>Secondo te sarà…</label>
           <div class="gender-select">
             <button class="gender-option male" type="button" data-gender="male">
               <img class="mini" src="./mirtillo.jpg" alt="Mirtillo" />
@@ -454,27 +388,28 @@
         </div>
 
         <div>
-          <label>Nomi proposti</label>
+          <label>E come si chiamerà?</label>
           <div id="rows" class="rows">
             <div class="name-row">
-              <input type="text" placeholder="Scrivi un nome" />
+              <input type="text" placeholder="Scrivi il nome che ti aspetti…" />
             </div>
           </div>
         </div>
 
         <div style="display:flex;justify-content:center;">
-          <button class="btn-secondary" type="button" id="addRow">+ Aggiungi un altro nome</button>
+          <button class="btn-secondary" type="button" id="addRow">+ Aggiungi un'altra idea</button>
         </div>
 
         <div class="actions">
-          <button class="btn" type="submit">Invia i nomi</button>
+          <button class="btn" type="submit">Invia il mio pronostico</button>
         </div>
       </form>
     </section>
 
+    <!-- BACHECA -->
     <section class="section">
-      <h2>Tutti i nomi raccolti</h2>
-      <p class="subtitle">I nomi ripetuti vengono raggruppati con il conteggio tra parentesi.</p>
+      <h2>I pronostici di tutti</h2>
+      <p class="subtitle">Torniamo qui dopo la nascita per scoprire chi ci aveva visto giusto! 🎉</p>
 
       <div class="two-cols">
         <article class="box male">
@@ -486,7 +421,7 @@
             </div>
           </div>
           <div class="list" id="listMale">
-            <div class="empty">Ancora nessun nome per Mirtillo.</div>
+            <div class="empty">Ancora nessun pronostico per Mirtillo.</div>
           </div>
         </article>
 
@@ -499,17 +434,18 @@
             </div>
           </div>
           <div class="list" id="listFemale">
-            <div class="empty">Ancora nessun nome per Mirtilla.</div>
+            <div class="empty">Ancora nessun pronostico per Mirtilla.</div>
           </div>
         </article>
       </div>
     </section>
 
-    <div class="footer">Creato da due mirtilli super teneri! 💕</div>
+    <div class="footer">Creato con due mirtilli super teneri! 💕</div>
   </div>
 
+  <!-- FAB -->
   <button class="fab" onclick="document.getElementById('form-section').scrollIntoView({behavior:'smooth'})">
-    ✏️ Proponi un nome
+    🍀 Lascia il tuo pronostico
   </button>
 
   <div class="toast" id="toast" aria-live="polite"></div>
@@ -517,14 +453,15 @@
   <script>
     const SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsu0q7k8A8MimvHekrftviMOmcIP9UN_XPf7Z8Ckbc9_xCOhfLri3oPd6pUCBfe9vH/exec";
 
+    // state: array di {name, proposer}
     const state = { male: [], female: [] };
     let selectedGender = null;
 
     const genderButtons = document.querySelectorAll('.gender-option');
-    const form = document.getElementById('nameForm');
-    const rowsEl = document.getElementById('rows');
-    const addRowBtn = document.getElementById('addRow');
-    const toast = document.getElementById('toast');
+    const form          = document.getElementById('nameForm');
+    const rowsEl        = document.getElementById('rows');
+    const addRowBtn     = document.getElementById('addRow');
+    const toast         = document.getElementById('toast');
 
     genderButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -537,7 +474,7 @@
     addRowBtn.addEventListener('click', () => {
       const row = document.createElement('div');
       row.className = 'name-row';
-      row.innerHTML = '<input type="text" placeholder="Scrivi un altro nome" /><button class="btn-small" type="button" aria-label="Rimuovi">✕</button>';
+      row.innerHTML = '<input type="text" placeholder="Hai un altro nome in mente?" /><button class="btn-small" type="button" aria-label="Rimuovi">✕</button>';
       rowsEl.appendChild(row);
       row.querySelector('button').addEventListener('click', () => row.remove());
       row.querySelector('input').focus();
@@ -549,13 +486,9 @@
       if (!first || first.querySelector('button')) return;
       if (rowsEl.children.length > 1) {
         const btn = document.createElement('button');
-        btn.className = 'btn-small';
-        btn.type = 'button';
-        btn.textContent = '✕';
-        btn.setAttribute('aria-label', 'Rimuovi');
-        btn.addEventListener('click', () => {
-          if (rowsEl.children.length > 1) first.remove();
-        });
+        btn.className = 'btn-small'; btn.type = 'button';
+        btn.textContent = '✕'; btn.setAttribute('aria-label', 'Rimuovi');
+        btn.addEventListener('click', () => { if (rowsEl.children.length > 1) first.remove(); });
         first.appendChild(btn);
       }
     }
@@ -565,63 +498,53 @@
       const proposer = document.getElementById('proposer').value.trim();
       const names = [...rowsEl.querySelectorAll('input')].map(i => i.value.trim()).filter(Boolean);
 
-      if (!proposer) return showToast('Scrivi prima il tuo nome.');
+      if (!proposer)       return showToast('Scrivi prima il tuo nome.');
       if (!selectedGender) return showToast('Scegli Mirtillo oppure Mirtilla.');
-      if (!names.length) return showToast('Aggiungi almeno un nome.');
+      if (!names.length)   return showToast('Aggiungi almeno un nome.');
 
       names.forEach(name => state[selectedGender].push({ name, proposer }));
       render();
 
       try {
         await fetch(SHEET_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
+          method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ proposer, gender: selectedGender, names })
         });
-      } catch (err) {
-        console.warn('Sheets non raggiungibile:', err);
-      }
+      } catch(err) { console.warn('Sheets non raggiungibile:', err); }
 
       form.reset();
-      rowsEl.innerHTML = '<div class="name-row"><input type="text" placeholder="Scrivi un nome" /></div>';
+      rowsEl.innerHTML = '<div class="name-row"><input type="text" placeholder="Scrivi il nome che ti aspetti…" /></div>';
       selectedGender = null;
       genderButtons.forEach(b => b.classList.remove('active'));
-      showToast('Nomi aggiunti con successo! 🎉');
+      showToast('Pronostico registrato! 🍀 Torniamo qui dopo la nascita!');
     });
 
+    // ── RENDER con score (nomi raggruppati) ──
     function render() {
-      renderList('male', 'listMale', 'countMale', 'Mirtillo');
+      renderList('male',   'listMale',   'countMale',   'Mirtillo');
       renderList('female', 'listFemale', 'countFemale', 'Mirtilla');
     }
 
     function renderList(key, listId, countId, label) {
-      const list = document.getElementById(listId);
+      const list  = document.getElementById(listId);
       const count = document.getElementById(countId);
       const items = state[key];
 
+      // Raggruppa per nome (case-insensitive), tieni i proposer unici
       const grouped = {};
       items.forEach(({ name, proposer }) => {
-        const cleanName = name.trim();
-        const groupKey = cleanName.toLowerCase();
-        if (!grouped[groupKey]) {
-          grouped[groupKey] = {
-            name: cleanName,
-            proposers: [],
-            count: 0
-          };
-        }
-        grouped[groupKey].count++;
-        if (!grouped[groupKey].proposers.includes(proposer)) {
-          grouped[groupKey].proposers.push(proposer);
-        }
+        const k = name.trim().toLowerCase();
+        if (!grouped[k]) grouped[k] = { name: name.trim(), proposers: [], count: 0 };
+        grouped[k].count++;
+        if (!grouped[k].proposers.includes(proposer)) grouped[k].proposers.push(proposer);
       });
 
       const entries = Object.values(grouped).sort((a, b) => b.count - a.count);
-      const total = items.length;
+      const total   = items.length;
 
-      count.textContent = total + (total === 1 ? ' proposta' : ' proposte') +
-        (entries.length < total ? ' · ' + entries.length + ' nomi unici' : '');
+      count.textContent = total + (total === 1 ? ' pronostico' : ' pronostici') +
+                          (entries.length < total ? ' · ' + entries.length + ' nomi unici' : '');
 
       if (!entries.length) {
         list.innerHTML = '<div class="empty">Ancora nessun nome per ' + label + '.</div>';
@@ -644,16 +567,13 @@
     }
 
     function escapeHtml(v) {
-      return v.replaceAll('&','&amp;')
-              .replaceAll('<','&lt;')
-              .replaceAll('>','&gt;')
-              .replaceAll('"','&quot;')
-              .replaceAll("'",'&#39;');
+      return v.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+               .replaceAll('"','&quot;').replaceAll("'",'&#39;');
     }
 
     async function loadFromSheets() {
       try {
-        const res = await fetch(SHEET_SCRIPT_URL);
+        const res  = await fetch(SHEET_SCRIPT_URL);
         const data = await res.json();
         data.forEach(row => {
           if (row.name && row.gender && row.proposer) {
@@ -662,9 +582,7 @@
           }
         });
         render();
-      } catch (err) {
-        console.warn('Impossibile caricare i dati:', err);
-      }
+      } catch(err) { console.warn('Impossibile caricare i dati:', err); }
     }
 
     loadFromSheets();
